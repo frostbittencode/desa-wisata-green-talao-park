@@ -41,14 +41,14 @@ $routes->get('/403', 'Home::error403');
 $routes->get('/login', 'Web\Admin::login');
 $routes->get('/register', 'Web\Admin::register');
 
-$routes->group('web', function ($routes) {
+// $routes->group('web', function ($routes) {
 
-    $routes->group('profile', function ($routes) {
-        $routes->get('/', 'Home::profile');
-        $routes->get('update', 'Home::update');
-        $routes->get('changePassword', 'Home::changePassword');
-    });
-});
+//     $routes->group('profile', function ($routes) {
+//         $routes->get('/', 'Home::profile');
+//         $routes->get('update', 'Home::update');
+//         $routes->get('changePassword', 'Home::changePassword');
+//     });
+// });
 
 // App
 $routes->group('web', ['namespace' => 'App\Controllers\Web'], function ($routes) {

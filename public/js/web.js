@@ -1320,10 +1320,10 @@ function displayTrackResult(category, response) {
             '<tr>'+
             '<td>'+ item.name +'</td>' +
             '<td>'+
-            '<a title="Info" class="btn-sm icon btn-primary" onclick="infoModal(`'+ item.facility_id +'`)"><i class="fa-solid fa-info"></i></a>' +
+            '<a title="Location" class="btn-sm icon btn-primary" onclick="focusObject(`'+ item.facility_id +'`);"><i class="fa-solid fa-map-location-dot"></i></a>' +
             '</td>'+
             '<td>'+
-            '<a title="Location" class="btn-sm icon btn-primary" onclick="focusObject(`'+ item.facility_id +'`);"><i class="fa-solid fa-location-dot"></i></a>' +
+            '<a title="Info" class="btn-sm icon btn-primary" onclick="infoModal(`'+ item.facility_id +'`)"><i class="fa-regular fa-images"></i></a>' +
             '</td>'+
             '</tr>';
         $('#data-'+category).append(row);
@@ -1419,10 +1419,10 @@ function displayNearbyResult(category, response) {
             '<tr>'+
             '<td>'+ item.name +'</td>' +
             '<td>'+
-            '<a title="Info" class="btn-sm icon btn-primary" onclick="infoModal(`'+ item.id +'`)"><i class="fa-solid fa-info"></i></a>' +
+            '<a title="Location" class="btn-sm icon btn-primary" onclick="focusObject(`'+ item.id +'`);"><i class="fa-solid fa-map-location-dot"></i></a>' +
             '</td>'+
             '<td>'+
-            '<a title="Location" class="btn-sm icon btn-primary" onclick="focusObject(`'+ item.id +'`);"><i class="fa-solid fa-location-dot"></i></a>' +
+            '<a title="Info" class="btn-sm icon btn-primary" onclick="infoModal(`'+ item.id +'`)"><i class="fa-regular fa-images"></i></a>' +
             '</td>'+
             '</tr>';
         $('#data-'+category).append(row);

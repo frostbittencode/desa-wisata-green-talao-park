@@ -39,16 +39,16 @@ $routes->set404Override();
 $routes->get('/', 'Home::landingPage');
 $routes->get('/403', 'Home::error403');
 $routes->get('/login', 'Web\Admin::login');
-$routes->get('/register', 'Web\Admin::register');
+// $routes->get('/register', 'Web\Admin::register');
 
-// $routes->group('web', function ($routes) {
+$routes->group('web', function ($routes) {
 
-//     $routes->group('profile', function ($routes) {
-//         $routes->get('/', 'Home::profile');
-//         $routes->get('update', 'Home::update');
-//         $routes->get('changePassword', 'Home::changePassword');
-//     });
-// });
+    $routes->group('profile', function ($routes) {
+        $routes->get('/', 'Home::profile');
+        $routes->get('update', 'Home::update');
+        $routes->get('changePassword', 'Home::changePassword');
+    });
+});
 
 // App
 $routes->group('web', ['namespace' => 'App\Controllers\Web'], function ($routes) {
@@ -84,11 +84,13 @@ $routes->group('web', ['namespace' => 'App\Controllers\Web'], function ($routes)
 // Dashboard
 $routes->group('dashboard', ['namespace' => 'App\Controllers\Web', 'filter' => 'role:admin'], function ($routes) {
     $routes->get('/', 'Dashboard::index');
+    $routes->get('gtp', 'Dashboard::gtp');
     $routes->get('attraction', 'Dashboard::attraction');
     $routes->get('event', 'Dashboard::event');
     $routes->get('package', 'Dashboard::package');
     $routes->get('facility', 'Dashboard::facility');
 
+    $routes->presenter('gtp');
     $routes->presenter('attraction');
     $routes->presenter('event');
     $routes->presenter('package');

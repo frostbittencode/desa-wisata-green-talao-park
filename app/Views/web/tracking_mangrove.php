@@ -54,6 +54,12 @@
                         <!-- Object Media -->
                         <?= $this->include('web/layouts/our_gallery_video'); ?>
 
+                        <div class="d-grid gap-2 pt-2">
+                            <button type="button" class="btn btn-outline-primary" onclick="focusObject(`<?= esc($item['id']); ?>`);">
+                                <span class="material-icons" style="font-size: 1.5rem; vertical-align: bottom">info</span> More Info
+                            </button>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

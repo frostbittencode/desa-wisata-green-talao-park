@@ -9,11 +9,6 @@ server {
 
     location / {            
         try_files $uri $uri/ /index.php?$args; # changed for Laravel
-        # try_files $uri $uri/ /index.php?q=$uri&$args;
-    }
-
-    location /web/ {
-        try_files $uri $uri/ /index.php?$args;
     }
 
     # redirect server error pages to the static page /50x.html

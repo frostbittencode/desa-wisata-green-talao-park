@@ -110,5 +110,6 @@
 <script>
     $('#direction-row').hide();
     $('#check-explore-col').hide();
+    $('#result-explore-col').hide();
 </script>
 <?= $this->endSection() ?>

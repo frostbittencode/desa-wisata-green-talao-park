@@ -39,16 +39,19 @@ $uri3 = $uri[3] ?? '';
 
                     <!-- Object -->
 
-                    <li class="sidebar-item <?= ($uri1 == 'tracking') ? 'active' : '' ?>">
-                        <a href="<?= base_url('/web/tracking'); ?>" class="sidebar-link">
-                            <i class="fa-solid fa-bridge-water"></i><span>Tracking Mangrove</span>
+                    <li class="sidebar-item has-sub">
+                        <a href="" class="sidebar-link">
+                            <i class="fa-solid fa-star"></i><span>Attraction</span>
                         </a>
-                    </li>
 
-                    <li class="sidebar-item <?= ($uri1 == 'talao') ? 'active' : '' ?>">
-                        <a href="<?= base_url('/web/talao'); ?>" class="sidebar-link">
-                            <i class="fa-solid fa-water"></i><span>Estuaria/Talao</span>
-                        </a>
+                        <ul class="submenu <?= ($uri1 == 'tracking' || $uri1 == 'talao') ? 'active' : '' ?>">
+                            <li class="submenu-item <?= ($uri1 == 'tracking') ? 'active' : '' ?>" id="at-list">
+                                <a href="<?= base_url('/web/tracking'); ?>"><i class="fa-solid fa-bridge-water me-3"></i>Tracking Mangrove</a>
+                            </li>
+                            <li class="submenu-item <?= ($uri1 == 'talao') ? 'active' : '' ?>" id="at-list">
+                                <a href="<?= base_url('/web/talao'); ?>"><i class="fa-solid fa-water me-3"></i>Water Attractions</a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="sidebar-item <?= ($uri1 == 'event') ? 'active' : '' ?>">

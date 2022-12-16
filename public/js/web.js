@@ -827,6 +827,7 @@ function openExplore() {
 function closeExplore() {
     $('#check-explore-col').hide();
     $('#list-object-col').show();
+    $('#result-explore-col').hide();
 }
 
 function checkExplore() {
@@ -841,6 +842,16 @@ function checkExplore() {
     clearMarker();
     destinationMarker.setMap(null);
     google.maps.event.clearListeners(map, 'click');
+
+    $('#table-cp').empty();
+    $('#table-ho').empty();
+    $('#table-sp').empty();
+    $('#table-wp').empty();
+
+    $('#table-cp').hide();
+    $('#table-ho').hide();
+    $('#table-sp').hide();
+    $('#table-wp').hide();
 
     let pos = new google.maps.LatLng(currentLat, currentLng);
     let radiusValue = parseFloat(document.getElementById('inputRadiusNearby').value) * 100;
@@ -859,17 +870,22 @@ function checkExplore() {
 
     if (checkCP) {
         findExplore('cp', radiusValue);
+        $('#table-cp').show();
     }
     if (checkHO) {
         findExplore('ho', radiusValue);
+        $('#table-ho').show();
     }
     if (checkSP) {
         findExplore('sp', radiusValue);
+        $('#table-sp').show();
     }
     if (checkWP) {
         findExplore('wp', radiusValue);
+        $('#table-wp').show();
     }
     drawRadius(new google.maps.LatLng(currentLat, currentLng), radiusValue);
+    $('#result-explore-col').show();
 }
 
 // Fetch object nearby by category
@@ -886,7 +902,7 @@ function findExplore(category, radius) {
             },
             dataType: 'json',
             success: function (response) {
-                displayExploreResult(response);
+                displayExploreResult(category, response);
             }
         });
     } else if (category === 'ho') {
@@ -900,7 +916,7 @@ function findExplore(category, radius) {
             },
             dataType: 'json',
             success: function (response) {
-                displayExploreResult(response);
+                displayExploreResult(category, response);
             }
         });
     } else if (category === 'sp') {
@@ -914,7 +930,7 @@ function findExplore(category, radius) {
             },
             dataType: 'json',
             success: function (response) {
-                displayExploreResult(response);
+                displayExploreResult(category, response);
             }
         });
     } else if (category === 'wp') {
@@ -928,17 +944,44 @@ function findExplore(category, radius) {
             },
             dataType: 'json',
             success: function (response) {
-                displayExploreResult(response);
+                displayExploreResult(category, response);
             }
         });
     }
 }
 
-function displayExploreResult(response) {
+function displayExploreResult(category, response) {
     let data = response.data;
+    let headerName;
+    if (category === 'cp') {
+        headerName = 'Culinary Place';
+    } else if (category === 'ho') {
+        headerName = 'Homestay';
+    } else if (category === 'sp') {
+        headerName = 'Souvenir Place'
+    } else if (category === 'wp') {
+        headerName = 'Worship Place'
+    }
+
+    let table =
+        '<thead><tr>' +
+        '<th>'+ headerName +' Name</th>' +
+        '<th colspan="1">Action</th>' +
+        '</tr></thead>' +
+        '<tbody id="data-'+category+'">' +
+        '</tbody>';
+    $('#table-'+category).append(table);
 
     for (i in data) {
         let item = data[i];
+        let row =
+            '<tr>'+
+            '<td>'+ item.name +'</td>' +
+            '<td>'+
+            '<a title="Location" class="btn-sm icon btn-primary" onclick="focusObject(`'+ item.id +'`);"><i class="fa-solid fa-map-location-dot"></i></a>' +
+            '</td>'+
+            '</tr>';
+        $('#data-'+category).append(row);
         objectMarkerExplore(item.id, item.lat, item.lng, item.status);
     }
 }
@@ -1426,7 +1469,7 @@ function getLegend() {
             icon: baseUrl + '/media/icon/tracking.png',
         },
         talao :{
-            name: 'Estuaria/Talao',
+            name: 'Water Attractions',
             icon: baseUrl + '/media/icon/talao.png',
         },
         event :{

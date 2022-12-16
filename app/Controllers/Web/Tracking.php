@@ -39,7 +39,7 @@ class Tracking extends ResourcePresenter
 
         $data = [
             'title' => 'Tracking Mangrove',
-            'folder' => 'tracking',
+            'folder' => 'attraction',
             'data' => $contents
         ];
 

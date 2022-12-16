@@ -43,7 +43,7 @@ class Talao extends ResourcePresenter
 
         $data = [
             'title' => 'Estuaria/Talao',
-            'folder' => 'talao',
+            'folder' => 'attraction',
             'data' => $contents
         ];
 

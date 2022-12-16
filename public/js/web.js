@@ -47,6 +47,11 @@ let customStyled = [
     }
 ];
 
+const formatter = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+});
+
 function setBaseUrl(url) {
     baseUrl = url;
 }
@@ -431,7 +436,7 @@ function objectInfoWindow(id){
                 let lat = data.lat;
                 let lng = data.lng;
                 let type = data.type;
-                let price = (data.price == 0) ? 'Free' : 'Rp ' + data.price;
+                let price = (data.price == 0) ? 'Free' : formatter.format(data.price);
                 
                 content =
                     '<div class="text-center">' +
@@ -471,7 +476,7 @@ function objectInfoWindow(id){
                 let type = data.type;
                 // let lat = data.lat;
                 // let lng = data.lng;
-                let price = (data.price == 0) ? 'Free' : 'Rp ' + data.price;
+                let price = (data.price == 0) ? 'Free' : formatter.format(data.price);
 
                 content =
                     '<div class="text-center">' +
@@ -503,7 +508,7 @@ function objectInfoWindow(id){
                 // let lat = data.lat;
                 // let lng = data.lng;
                 let type_name = data.type_name;
-                let price = (data.price == 0) ? 'Free' : 'Rp ' + data.price;
+                let price = (data.price == 0) ? 'Free' : formatter.format(data.price);
 
                 content =
                     '<div class="text-center">' +
